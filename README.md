@@ -17,3 +17,6 @@ you can switch `yarn add` to `npm install`
 1. `git clone git@github.com:leesiha/facemesh.git`
 2. `npm start`
 3. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+## Example output
+<img width="1624" alt="Example output" src="https://user-images.githubusercontent.com/66323295/180922178-2ef3b25c-1bd8-443b-a733-814ad67e736b.png">
