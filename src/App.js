@@ -14,11 +14,10 @@ import '@tensorflow/tfjs-backend-webgl';
 import '@mediapipe/face_mesh';
 
 //얼굴 윤곽 마스크 씌우기
-import { drawMesh } from "./utilities";
+import { drawResults } from "./util";
 
 //얼굴 이미지 가져오기
 import image from './images/image.jpg';
-
 
 
 function App() {
@@ -46,20 +45,21 @@ function App() {
     const ImageElementHeight = HTMLImageElement.height;
 
     // Set canvas width -> 이거 필수인가?
-    console.log("This picture's width is "+HTMLImageElement.width+", and height is "+HTMLImageElement.height);
-    console.log(HTMLImageElement);
+      //console.log("This picture's width is "+HTMLImageElement.width+", and height is "+HTMLImageElement.height);
+      //console.log(HTMLImageElement);
     canvasRef.current.width = ImageElementWidth;
     canvasRef.current.height = ImageElementHeight;
       //console.log("canvasRef is " + canvasRef.current);
     
     const estimationConfig = {flipHorizontal: false};
     const facedata = await detector.estimateFaces(input_tensor, estimationConfig);
-      //console.log(facedata[0].keypoints);
+      console.log(facedata[0].keypoints);
 
     // Get canvas context
     const ctx = canvasRef.current.getContext("2d");
       //console.log('ctx' + ctx); //문제없음
-    requestAnimationFrame(()=>{drawMesh(facedata[0].keypoints, ctx)}); //facedata나 ctx에서 들어가야할 데이터가 없어서 오류가 나는건데...
+    ctx.drawImage(HTMLImageElement, 0, 0, canvasRef.current.width, canvasRef.current.height);
+    requestAnimationFrame(()=>{drawResults(ctx, facedata, true, true);}); //facedata나 ctx에서 들어가야할 데이터가 없어서 오류가 나는건데...
   };
   
   useEffect(()=>{runFacemesh()});
@@ -71,7 +71,6 @@ function App() {
           <img 
           id='face' 
           src={image} 
-          crossOrigin='anonymous' 
           style={{
             marginLeft: "auto",
             marginRight: "auto",
@@ -79,8 +78,11 @@ function App() {
             right: 0,
             textAlign: "center",
             zindex: 9,
-            maxWidth: 640,
-            maxHeight: 480
+            //어차피 안보여질건데 크기 정할 필요 없지않나? 쓸데없음.
+            //maxWidth: 640,
+            //maxHeight: 480,
+            //visibility: "hidden", //이건 공간은 할당되어 있고 시각적으로 안 보이기만 하는 속성
+            display: "none", //이건 할당된 공간도 안 보임
           }}
           />
           <canvas
