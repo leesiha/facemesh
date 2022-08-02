@@ -4,16 +4,10 @@
 
 ## Installation
 ```sh
-yarn add @tensorflow/tfjs
-yarn add @tensorflow/tfjs-core
-yarn add @tensorflow/tfjs-converter
-yarn add @tensorflow/tfjs-backend-webgl
-yarn add @tensorflow-models/face-detection
-yarn add @tensorflow-models/face-landmarks-detection
+package-lock.json 지우고 npm install 실행
 ```
-you can switch `yarn add` to `npm install` 
 
-## How to Run It
+## How to Run
 1. `git clone git@github.com:leesiha/facemesh.git`
 2. `npm start`
 3. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
