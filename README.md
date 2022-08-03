@@ -4,7 +4,7 @@
 
 ## Installation
 ```sh
-package-lock.json 지우고 npm install 실행
+package-lock.json, node_modules 지우고 npm install 실행
 ```
 
 ## How to Run
